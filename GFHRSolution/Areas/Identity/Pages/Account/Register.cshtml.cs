@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using GFHRSolution.Data;
+using GFHRSolution.Utility;
 
 namespace GFHRSolution.Areas.Identity.Pages.Account
 {
@@ -25,16 +27,24 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly GFHRIdentityContext _db;
+
+
         public RegisterModel(
             UserManager<GFHRSolutionUser> userManager,
             SignInManager<GFHRSolutionUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager,
+            GFHRIdentityContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -81,6 +91,16 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    if (!await _roleManager.RoleExistsAsync(HR_role.AdminEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(HR_role.AdminEndUser));
+                    }
+
+                    if (!await _roleManager.RoleExistsAsync(HR_role.CustomerEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(HR_role.CustomerEndUser));
+                    }
+                    await _userManager.AddToRoleAsync(user, HR_role.AdminEndUser);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

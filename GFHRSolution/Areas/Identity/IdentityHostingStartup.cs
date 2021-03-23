@@ -20,8 +20,16 @@ namespace GFHRSolution.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("GFHRContextConnection")));
 
-                services.AddDefaultIdentity<GFHRSolutionUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                //services.AddDefaultIdentity<GFHRSolutionUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                //    .AddEntityFrameworkStores<GFHRIdentityContext>();
+
+
+               services.AddIdentity<GFHRSolutionUser, IdentityRole>()
+                    .AddDefaultTokenProviders()
+                    .AddDefaultUI()
                     .AddEntityFrameworkStores<GFHRIdentityContext>();
+
+
             });
         }
     }
