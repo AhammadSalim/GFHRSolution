@@ -52,14 +52,15 @@
                         <li class="nav-item active">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item active"> 
+                        <li class="nav-item active">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                       
                         @if (User.IsInRole("Admin"))
                         {
-                    <li class="nav-item active">
-                        <a id="forgot-password" asp-page="/Identity/Account/ForgotPassword">Forgot your password?</a>
-                    </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-dark" href="/Identity/Account/Register" >Register</a>
+                            </li>
                         }
                     </ul>
                     @if (SignInManager.IsSignedIn(User))
