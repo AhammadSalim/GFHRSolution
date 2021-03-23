@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GFHRSolution.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,7 +23,7 @@ namespace GFHRSolution.Controllers
             _logger = logger;
             _signInManager = signInManager;
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();

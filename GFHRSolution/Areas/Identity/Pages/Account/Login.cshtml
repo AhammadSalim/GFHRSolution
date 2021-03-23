@@ -27,10 +27,10 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div style="background-color:whitesmoke; border-radius:15px; margin-top:5%" class="col-12  col-lg-6 offset-lg-3 div-wrapper d-flex justify-content-center align-items-center bg-light">
+            <div style="background-color:whitesmoke; opacity:80%; border-radius:15px; margin-top:5%" class="col-8  col-lg-4 offset-lg-4 div-wrapper d-flex justify-content-center align-items-center bg-light">
             @*<div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8"/>*@
 
-                <div class="div-to-align col-lg-6">
+                <div class="div-to-align col-lg-10">
                     <br /><br />
                     <h3>@ViewData["Title"]</h3>
                     <section>
@@ -58,7 +58,15 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary col s12 ">Log in</button>
                             </div>
-                          <br />
+                            <div class="form-group">
+                                <p>
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                </p>
+                            </div>
+                            <br />
                         </form>
                     </section>
                 </div>
