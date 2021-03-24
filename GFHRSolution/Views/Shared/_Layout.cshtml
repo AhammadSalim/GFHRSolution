@@ -19,7 +19,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GFHRSolution</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">prod</a>
 
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -103,7 +103,8 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href="#">pro sidebar</a>
+                    <a class="nav-link text-muted" asp-area="" asp-controller="Home" asp-action="Index">GF HR Solution</a>
+
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>
@@ -115,7 +116,7 @@
                     </div>
                     <div class="user-info">
                         <span class="user-name">
-                            <strong>@User.Identity.Name</strong>
+                            <strong>@UserManager.GetUserName(User)</strong>
                         </span>
                         <span class="user-role">Administrator</span>
                         <span class="user-status">
@@ -125,155 +126,125 @@
                     </div>
                 </div>
                 <!-- sidebar-header  -->
-                <div class="sidebar-search">
-                    <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
+                @*<div class="sidebar-search">
+                        <div>
+                            <div class="input-group">
+                                <input type="text" class="form-control search-menu" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu">
-                            <span>General</span>
+                            <span>Masters</span>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Dashboard</span>
-                                <span class="badge badge-pill badge-warning">New</span>
+                                <i class="fa fa-user-tie"></i>
+                                <span>Employees</span>
+                                @*<span class="badge badge-pill badge-warning">New</span>*@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">
-                                            Dashboard 1
-                                            <span class="badge badge-pill badge-success">Pro</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Dashboard 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Dashboard 3</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>E-commerce</span>
-                                <span class="badge badge-pill badge-danger">3</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            Products
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Employees" asp-action="Create">Create Employee</a>
 
-                                        </a>
+                                        @*<span class="badge badge-pill badge-success">Pro</span>*@
+
                                     </li>
                                     <li>
-                                        <a href="#">Orders</a>
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Employees" asp-action="Index">Employees List</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Credit cart</a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="far fa-gem"></i>
-                                <span>Components</span>
+                                <i class="fa fa-suitcase"></i>
+                                <span>Designation</span>
+                                @*<span class="badge badge-pill badge-danger">3</span>*@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">General</a>
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Designations" asp-action="Create">New Designation</a>
                                     </li>
                                     <li>
-                                        <a href="#">Panels</a>
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Designations" asp-action="Index">Designation List</a>
+
                                     </li>
-                                    <li>
-                                        <a href="#">Tables</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Forms</a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Charts</span>
+                                <i class="fa fa-globe-asia"></i>
+                                <span>Countries</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">Pie chart</a>
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Countries" asp-action="Create">Add Country</a>
                                     </li>
                                     <li>
-                                        <a href="#">Line chart</a>
+                                        <a class="nav-link text-muted" asp-area="" asp-controller="Countries" asp-action="Index">Country List</a>
+
                                     </li>
-                                    <li>
-                                        <a href="#">Bar chart</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Histogram</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-globe"></i>
-                                <span>Maps</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Google maps</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Open street map</a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </li>
                         <li class="header-menu">
-                            <span>Extra</span>
+                            <span>Settings</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-toolbox"></i>
+                                <span>Account Settings</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a class="nav-link text-muted" href="/Identity/Account/Register">Register</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-muted" href="/Identity/Account/ResetPassword">Reset Password</a>
+
+                                    </li>
+
+                                </ul>
+                            </div>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Documentation</span>
-                                <span class="badge badge-pill badge-primary">Beta</span>
+                                <form id="p" style="margin-left:-13px" method="post" asp-controller="Home" asp-action="Logout">
+                                    <button  class="btn" style="background-color:transparent;" type="submit" name="culture">
+                                        <span>
+                                            <i style="width:215px;color:grey" class="fa fa-power-off" > Log Out 
+                                            </i>
+                                        </span>
+                                    </button>
+
+                                    
+
+
+                                </form>
                             </a>
+
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>Calendar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span>Examples</span>
-                            </a>
-                        </li>
+
+
+
+
+
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->
@@ -306,7 +277,7 @@
     </div>
     <footer class="border-top footer text-muted ">
         <div class=" page-content container ">
-            
+
             &copy; 2021 - GFHRSolution - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -321,5 +292,6 @@
 
 
     @RenderSection("Scripts", required: false)
+    
 </body>
 </html>
