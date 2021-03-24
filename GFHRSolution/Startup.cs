@@ -1,7 +1,9 @@
+using GFHRSolution.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,6 +49,10 @@ namespace GFHRSolution
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._@+";
                 options.User.RequireUniqueEmail = false;
             });
+
+            IServiceCollection s = services.AddDbContext<GFHRSolutionContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString("GFHRContextConnection"))
+            );
 
             services.ConfigureApplicationCookie(options =>
             {
