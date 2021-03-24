@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/Sidebar/js/sidebarscr.js"></script>
+    <style>
+        body {
+            font-family: Verdana !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -122,10 +127,15 @@
                              alt="User picture">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">
-                            <strong>@UserManager.GetUserName(User)</strong>
+                          <span class="user-name">
+                            @{
+                                var user = await UserManager.GetUserAsync(User);
+                                var userId = user?.FirstName;
+                                <strong>@userId</strong>
+                            }
                         </span>
                         <span class="user-role">Administrator</span>
+                      
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -233,14 +243,15 @@
                         <li>
                             <a href="#">
                                 <form id="p" style="margin-left:-13px" method="post" asp-controller="Home" asp-action="Logout">
-                                    <button  class="btn" style="background-color:transparent;" type="submit" name="culture">
+                                    <button class="btn" style="background-color:transparent;" type="submit" name="culture">
                                         <span>
-                                            <i style="width:215px;color:grey" class="fa fa-power-off" > Log Out 
+                                            <i style="width:215px;color:grey" class="fa fa-power-off">
+                                                Log Out
                                             </i>
                                         </span>
                                     </button>
 
-                                    
+
 
 
                                 </form>
@@ -293,6 +304,6 @@
 
 
     @RenderSection("Scripts", required: false)
-    
+
 </body>
 </html>
