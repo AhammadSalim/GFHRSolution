@@ -123,7 +123,10 @@
                     </div>
                     <div class="user-info">
                         <span class="user-name">
-                            <strong>@UserManager.GetUserName(User)</strong>
+                            @{
+                                var user = await UserManager.GetUserAsync(User);
+                            }
+                            <strong>@user.FirstName</strong>
                         </span>
                         <span class="user-role">Administrator</span>
                         <span class="user-status">
@@ -233,14 +236,15 @@
                         <li>
                             <a href="#">
                                 <form id="p" style="margin-left:-13px" method="post" asp-controller="Home" asp-action="Logout">
-                                    <button  class="btn" style="background-color:transparent;" type="submit" name="culture">
+                                    <button class="btn" style="background-color:transparent;" type="submit" name="culture">
                                         <span>
-                                            <i style="width:215px;color:grey" class="fa fa-power-off" > Log Out 
+                                            <i style="width:215px;color:grey" class="fa fa-power-off">
+                                                Log Out
                                             </i>
                                         </span>
                                     </button>
 
-                                    
+
 
 
                                 </form>
@@ -293,6 +297,6 @@
 
 
     @RenderSection("Scripts", required: false)
-    
+
 </body>
 </html>
