@@ -5,12 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4 style="color: #54555c;"><i class="fa fa-users" style="color: #54555c; font-size: 25px; padding: 0px 0px 0px 0px; margin-top: -5px !important;"></i>&nbsp;Employee List</h4>
+<div class="row">
+    <div class="col">
+        <h4 style="color: #54555c;"><i class="fa fa-users" style="color: #54555c; font-size: 25px; padding: 0px 0px 0px 0px; margin-top: -5px !important;"></i>&nbsp;Employee List</h4>
+
+    </div>
+    <div class="col d-flex flex-row-reverse">
+        <a asp-action="Create"><i class="far fa-plus-square fa-2x"></i></a>
+    </div>
+</div>
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
 <table class="table">
     <thead>
         <tr>
