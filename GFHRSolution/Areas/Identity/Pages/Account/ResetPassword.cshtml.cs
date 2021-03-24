@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using GFHRSolution.Data;
 
 namespace GFHRSolution.Areas.Identity.Pages.Account
 {
@@ -18,10 +19,12 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<GFHRSolutionUser> _userManager;
+        private readonly GFHRIdentityContext _db;
 
-        public ResetPasswordModel(UserManager<GFHRSolutionUser> userManager)
+        public ResetPasswordModel(UserManager<GFHRSolutionUser> userManager,GFHRIdentityContext db)
         {
             _userManager = userManager;
+            _db = db;
         }
 
         [BindProperty]
@@ -29,9 +32,11 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            //[Required]
+            //[EmailAddress]
+            //public string Email { get; set; }
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            public string UserName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -69,7 +74,8 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
             {
                 return Page();
             }
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            var user = _db.Users.Where(u => u.UserName.Equals(Input.UserName)).Single();
+            //var user = await _userManager.FindByEmailAsync(Input.Email);
             await _userManager.RemovePasswordAsync(user);
             await _userManager.AddPasswordAsync(user, Input.ConfirmPassword);
 
