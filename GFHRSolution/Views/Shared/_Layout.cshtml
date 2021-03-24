@@ -52,36 +52,70 @@
                         <li class="nav-item active">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Employees
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Create">Create Employee</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees List</a>
+
+                            </div>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Create">Create Country</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Designations
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Designations" asp-action="Create">CreateDesignation</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Designations" asp-action="Index">Designations</a>
+
+                            </div>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
+
+
+
+                        @*<li class="nav-item active">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Countries
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Create">Create Country</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
+
+                            </div>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Designations" asp-action="Create">CreateDesignation</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Designations" asp-action="Index">Designations</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Create">Create Employee</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
-                        </li>
+
+
+
+
+                        <!-- Dropdown -->
+
+
+
 
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item active">
-                                <a class="nav-link text-dark" href="/Identity/Account/Register">Register</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    Account settings
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link text-dark" href="/Identity/Account/Register">Register</a>
+                                    <a class="nav-link text-dark" href="/Identity/Account/ResetPassword">Reset Password</a>
+
+                                </div>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link text-dark" href="/Identity/Account/ResetPassword">Reset Password</a>
-                            </li>
+
+
+
+
+
                         }
                     </ul>
                     @if (SignInManager.IsSignedIn(User))
@@ -114,6 +148,8 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
