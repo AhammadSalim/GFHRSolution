@@ -120,7 +120,8 @@ namespace GFHRSolution.Areas.Identity.Pages.Account
                     {
                         await _roleManager.CreateAsync(new IdentityRole(HR_role.CustomerEndUser));
                     }
-                    await _userManager.AddToRoleAsync(user, HR_role.AdminEndUser);
+
+                    await _userManager.AddToRoleAsync(user, HR_role.CustomerEndUser);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
