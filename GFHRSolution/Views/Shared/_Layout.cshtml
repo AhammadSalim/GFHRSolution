@@ -123,7 +123,10 @@
                     </div>
                     <div class="user-info">
                         <span class="user-name">
-                            <strong>@UserManager.GetUserName(User)</strong>
+                            @{ 
+                                var user = await UserManager.GetUserAsync(User);
+                            }
+                            <strong>@user.FirstName</strong>
                         </span>
                         <span class="user-role">Administrator</span>
                         <span class="user-status">
